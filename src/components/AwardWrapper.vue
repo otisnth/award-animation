@@ -1,5 +1,5 @@
 <template>
-  <component :is="AnimationComponent" class="award-wrapper">
+  <component :is="AnimationComponent">
     <slot />
   </component>
 </template>
@@ -23,11 +23,3 @@ const AnimationComponent = defineAsyncComponent(() => {
   }
 });
 </script>
-
-<style>
-.award-wrapper {
-  position: relative;
-  display: inline-block;
-  overflow: visible;
-}
-</style>

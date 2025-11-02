@@ -1,64 +1,38 @@
 <template>
-  <div ref="stars-container">
+  <AnimationBase
+    animationClass="award-star"
+    :createContent="createStarContent"
+    :intervalRange="[400, 600]"
+    :duration="2000"
+  >
     <slot />
-  </div>
+  </AnimationBase>
 </template>
 
 <script setup lang="ts">
-import { onMounted, useTemplateRef } from "vue";
+import AnimationBase from "./AnimationBase.vue";
 
-const awardRef = useTemplateRef("stars-container");
-
-onMounted(() => {
-  if (awardRef.value) {
-    const createStar = () => {
-      const star = document.createElement("div");
-      star.className = "award-star";
-      star.innerHTML = `
-        <svg viewBox="0 0 24 24" width="30" height="30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <defs>
-            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-                <feMerge>
-                <feMergeNode in="coloredBlur"/>
-                <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-            </filter>
-            <radialGradient id="starGradient" cx="50%" cy="50%" r="70%">
-                <stop offset="0%" stop-color="#ffe600ff" stop-opacity="1"/>
-                <stop offset="100%" stop-color="gold" stop-opacity="0.8"/>
-            </radialGradient>
-            </defs>
-
-            <!-- Верхний луч -->
-            <polygon points="12,4 11,12 13,12" fill="url(#starGradient)" filter="url(#glow)" />
-
-            <!-- Нижний луч -->
-            <polygon points="12,20 11,12 13,12" fill="url(#starGradient)" filter="url(#glow)" />
-
-            <!-- Левый луч -->
-            <polygon points="4,12 12,11 12,13" fill="url(#starGradient)" filter="url(#glow)" />
-
-            <!-- Правый луч -->
-            <polygon points="20,12 12,11 12,13" fill="url(#starGradient)" filter="url(#glow)" />
-        </svg>
-    `;
-
-      const rect = awardRef.value?.getBoundingClientRect();
-
-      star.style.left = `${Math.random() * rect.width}px`;
-      star.style.top = `${Math.random() * rect.height}px`;
-
-      awardRef.value.appendChild(star);
-
-      setTimeout(() => {
-        star.remove();
-      }, 2000);
-    };
-
-    const interval = setInterval(createStar, 400 + Math.random() * 200);
-  }
-});
+const createStarContent = () => `
+  <svg viewBox="0 0 24 24" width="30" height="30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+        <feMerge>
+          <feMergeNode in="coloredBlur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+      <radialGradient id="starGradient" cx="50%" cy="50%" r="70%">
+        <stop offset="0%" stop-color="#ffe600ff" stop-opacity="1"/>
+        <stop offset="100%" stop-color="gold" stop-opacity="0.8"/>
+      </radialGradient>
+    </defs>
+    <polygon points="12,4 11,12 13,12" fill="url(#starGradient)" filter="url(#glow)" />
+    <polygon points="12,20 11,12 13,12" fill="url(#starGradient)" filter="url(#glow)" />
+    <polygon points="4,12 12,11 12,13" fill="url(#starGradient)" filter="url(#glow)" />
+    <polygon points="20,12 12,11 12,13" fill="url(#starGradient)" filter="url(#glow)" />
+  </svg>
+`;
 </script>
 
 <style>
