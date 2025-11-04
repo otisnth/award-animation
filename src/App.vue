@@ -7,6 +7,26 @@
     <AwardWrapper animation="stars">
       <div class="award"></div>
     </AwardWrapper>
+
+    <AwardWrapper animation="confetti">
+      <div class="award"></div>
+    </AwardWrapper>
+
+    <AwardWrapper animation="bubbles">
+      <div class="award"></div>
+    </AwardWrapper>
+
+    <AwardWrapper animation="hearts">
+      <div class="award"></div>
+    </AwardWrapper>
+
+    <AwardWrapper animation="fireworks">
+      <div class="award"></div>
+    </AwardWrapper>
+
+    <AwardWrapper animation="flames">
+      <div class="award"></div>
+    </AwardWrapper>
   </div>
 </template>
 

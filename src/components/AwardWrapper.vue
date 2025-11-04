@@ -1,5 +1,5 @@
 <template>
-  <component :is="AnimationComponent">
+  <component :is="AnimationComponent" class="animation-wrapper">
     <slot />
   </component>
 </template>
@@ -8,7 +8,7 @@
 import { defineAsyncComponent } from "vue";
 
 interface Props {
-  animation: "stars" | "sparks";
+  animation: "stars" | "sparks" | "confetti" | "bubbles" | "hearts" | "fireworks" | "flames";
 }
 
 const { animation } = defineProps<Props>();
@@ -20,6 +20,29 @@ const AnimationComponent = defineAsyncComponent(() => {
 
     case "stars":
       return import("./animations/AnimationStars.vue");
+
+    case "confetti":
+      return import("./animations/AnimationConfetti.vue");
+
+    case "bubbles":
+      return import("./animations/AnimationBubbles.vue");
+
+    case "hearts":
+      return import("./animations/AnimationHearts.vue");
+
+    case "fireworks":
+      return import("./animations/AnimationFireworks.vue");
+
+    case "flames":
+      return import("./animations/AnimationFlames.vue");
   }
 });
 </script>
+
+<style>
+.animation-wrapper {
+  position: relative;
+  display: inline-block;
+  overflow: visible;
+}
+</style>
