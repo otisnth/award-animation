@@ -1,58 +1,75 @@
 <template>
   <div class="container">
     <AwardWrapper animation="sparks">
-      <div class="award"></div>
+      <AwardStub />
     </AwardWrapper>
 
     <AwardWrapper animation="stars">
-      <div class="award"></div>
+      <AwardStub />
     </AwardWrapper>
 
     <AwardWrapper animation="confetti">
-      <div class="award"></div>
+      <AwardStub />
     </AwardWrapper>
 
     <AwardWrapper animation="bubbles">
-      <div class="award"></div>
+      <AwardStub />
     </AwardWrapper>
 
     <AwardWrapper animation="hearts">
-      <div class="award"></div>
+      <AwardStub />
     </AwardWrapper>
 
     <AwardWrapper animation="fireworks">
-      <div class="award"></div>
+      <AwardStub />
     </AwardWrapper>
 
     <AwardWrapper animation="flames">
-      <div class="award"></div>
+      <AwardStub />
+    </AwardWrapper>
+
+    <AwardWrapper animation="rainbow">
+      <AwardStub />
+    </AwardWrapper>
+
+    <AwardWrapper animation="holographic">
+      <AwardStub />
+    </AwardWrapper>
+
+    <AwardWrapper animation="fog">
+      <AwardStub />
+    </AwardWrapper>
+
+    <AwardWrapper animation="frozen">
+      <AwardStub />
     </AwardWrapper>
   </div>
 </template>
 
 <script setup lang="ts">
 import AwardWrapper from "./components/AwardWrapper.vue";
+import AwardStub from "./components/AwardStub.vue";
+// пришивание
+// разрезание ножницами?
+// рост травы или цветочка - делать
+// замерзание и откалывание кусками в приоритете
+// прилетает тарелка и сбрасывает медаль в приоритете
 </script>
 
 <style>
 html,
 body,
 #app {
-  height: 100%;
+  min-height: 100vh;
+  background-color: #e7e7e7;
 }
 
 .container {
   height: 100%;
-  display: flex;
+  display: grid;
   justify-content: center;
   align-items: center;
-  gap: 50px;
-}
-
-.award {
-  width: 48px;
-  height: 48px;
-  background-color: gold;
-  border-radius: 50%;
+  /* flex-wrap: wrap; */
+  gap: 100px;
 }
 </style>

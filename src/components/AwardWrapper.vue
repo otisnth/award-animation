@@ -8,7 +8,18 @@
 import { defineAsyncComponent } from "vue";
 
 interface Props {
-  animation: "stars" | "sparks" | "confetti" | "bubbles" | "hearts" | "fireworks" | "flames";
+  animation:
+    | "stars"
+    | "sparks"
+    | "confetti"
+    | "bubbles"
+    | "hearts"
+    | "fireworks"
+    | "flames"
+    | "rainbow"
+    | "holographic"
+    | "fog"
+    | "frozen";
 }
 
 const { animation } = defineProps<Props>();
@@ -35,6 +46,18 @@ const AnimationComponent = defineAsyncComponent(() => {
 
     case "flames":
       return import("./animations/AnimationFlames.vue");
+
+    case "rainbow":
+      return import("./animations/AnimationRainbow.vue");
+
+    case "holographic":
+      return import("./animations/AnimationHolographic.vue");
+
+    case "fog":
+      return import("./animations/AnimationFog.vue");
+
+    case "frozen":
+      return import("./animations/AnimationFrozen.vue");
   }
 });
 </script>
