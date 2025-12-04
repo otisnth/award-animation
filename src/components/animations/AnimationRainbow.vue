@@ -39,29 +39,28 @@ const parentBackgroundColor = ref("#ffffff"); // значение по умол�
 // Функция для поиска непрозрачного фона в родительских элементах
 function findParentBackgroundColor(element) {
   if (!element) return "#ffffff";
-  
+
   let current = element.parentElement;
-  
+
   while (current) {
     const bgColor = getComputedStyle(current).backgroundColor;
-    
+
     // Проверяем, является ли цвет непрозрачным
     if (bgColor && bgColor !== "rgba(0, 0, 0, 0)" && bgColor !== "transparent") {
-        return bgColor;
+      return bgColor;
     }
-    
+
     // Останавливаемся на body или html
     if (current.tagName === "BODY" || current.tagName === "HTML") {
       break;
     }
-    
+
     current = current.parentElement;
   }
-  
+
   return "#ffffff"; // значение по умолчанию
 }
 
-// Тайминги (в миллисекундах) — при необходимости подкорректируйте
 const LEFT_DELAY = 1500; // левое облако появляется через 1.5s
 const RAINBOW_DELAY = 3000; // радуга появляется через 3s
 const HIDE_AFTER_RAINBOW = 4500; // через сколько после появления радуги начнётся её скрытие
@@ -116,7 +115,7 @@ function resetClasses() {
 function playOnce() {
   // Сброс перед стартом
   resetClasses();
-  
+
   // Очищаем предыдущий интервал звезд, если он существует
   clearInterval(intervalStars);
 
@@ -201,7 +200,7 @@ const createStarContent = () => `
 
 <style lang="css" scoped>
 .rainbow-container {
-background-color: inherit;
+  background-color: inherit;
 }
 
 .content {
@@ -245,7 +244,6 @@ background-color: inherit;
   animation: hide-rainbow 4000ms ease forwards;
   animation-fill-mode: both;
 }
-
 
 .rainbow-arc {
   background-color: transparent;

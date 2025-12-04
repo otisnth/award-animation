@@ -19,7 +19,8 @@ interface Props {
     | "rainbow"
     | "holographic"
     | "fog"
-    | "frozen";
+    | "frozen"
+    | "ufo";
 }
 
 const { animation } = defineProps<Props>();
@@ -58,6 +59,9 @@ const AnimationComponent = defineAsyncComponent(() => {
 
     case "frozen":
       return import("./animations/AnimationFrozen.vue");
+
+    case "ufo":
+      return import("./animations/AnimationUfo.vue");
   }
 });
 </script>

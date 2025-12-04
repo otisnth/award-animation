@@ -43,6 +43,10 @@
     <AwardWrapper animation="frozen">
       <AwardStub />
     </AwardWrapper>
+
+    <AwardWrapper animation="ufo">
+      <AwardStub />
+    </AwardWrapper>
   </div>
 </template>
 
@@ -53,7 +57,6 @@ import AwardStub from "./components/AwardStub.vue";
 // разрезание ножницами?
 // рост травы или цветочка - делать
 // замерзание и откалывание кусками в приоритете
-// прилетает тарелка и сбрасывает медаль в приоритете
 </script>
 
 <style>
@@ -71,5 +74,7 @@ body,
   align-items: center;
   /* flex-wrap: wrap; */
   gap: 100px;
+
+  padding-bottom: 150px;
 }
 </style>
