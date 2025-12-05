@@ -57,6 +57,7 @@ import AwardStub from "./components/AwardStub.vue";
 // разрезание ножницами?
 // рост травы или цветочка - делать
 // замерзание и откалывание кусками в приоритете
+// бутон раскрывается в медаль, и крутится цветок
 </script>
 
 <style>
@@ -70,9 +71,9 @@ body,
 .container {
   height: 100%;
   display: grid;
+  grid-template-columns: repeat(3, 150px);
   justify-content: center;
   align-items: center;
-  /* flex-wrap: wrap; */
   gap: 100px;
 
   padding-bottom: 150px;

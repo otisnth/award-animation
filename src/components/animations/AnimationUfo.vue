@@ -4,6 +4,8 @@
 
     <img class="ufo-ray" src="@/assets/img/ufoRay.svg" ref="ray" />
 
+    <img class="ufo-grass" src="@/assets/img/ufoGrass.svg" />
+
     <div class="ufo-content" ref="award">
       <slot />
     </div>
@@ -240,5 +242,14 @@ onBeforeUnmount(() => {
   100% {
     height: 0%;
   }
+}
+
+.ufo-grass {
+  position: absolute;
+  width: 100%;
+  left: 0%;
+  bottom: -60%;
+  clip-path: ellipse(50% farthest-side at top);
+  perspective: 800px;
 }
 </style>
