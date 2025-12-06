@@ -20,48 +20,19 @@ interface Props {
     | "holographic"
     | "fog"
     | "frozen"
-    | "ufo";
+    | "ufo"
+    | "divine"
+    | "shimmer"
+    | "pulse";
 }
 
 const { animation } = defineProps<Props>();
 
 const AnimationComponent = defineAsyncComponent(() => {
-  switch (animation) {
-    case "sparks":
-      return import("./animations/AnimationSparks.vue");
-
-    case "stars":
-      return import("./animations/AnimationStars.vue");
-
-    case "confetti":
-      return import("./animations/AnimationConfetti.vue");
-
-    case "bubbles":
-      return import("./animations/AnimationBubbles.vue");
-
-    case "hearts":
-      return import("./animations/AnimationHearts.vue");
-
-    case "fireworks":
-      return import("./animations/AnimationFireworks.vue");
-
-    case "flames":
-      return import("./animations/AnimationFlames.vue");
-
-    case "rainbow":
-      return import("./animations/AnimationRainbow.vue");
-
-    case "holographic":
-      return import("./animations/AnimationHolographic.vue");
-
-    case "fog":
-      return import("./animations/AnimationFog.vue");
-
-    case "frozen":
-      return import("./animations/AnimationFrozen.vue");
-
-    case "ufo":
-      return import("./animations/AnimationUfo.vue");
+  try {
+    return import(`./animations/Animation${animation.charAt(0).toUpperCase() + animation.slice(1)}.vue`);
+  } catch (e) {
+    return Promise.resolve();
   }
 });
 </script>

@@ -47,6 +47,18 @@
     <AwardWrapper animation="ufo">
       <AwardStub />
     </AwardWrapper>
+
+    <AwardWrapper animation="divine">
+      <AwardStub />
+    </AwardWrapper>
+
+    <AwardWrapper animation="shimmer">
+      <AwardStub />
+    </AwardWrapper>
+
+    <AwardWrapper animation="pulse">
+      <AwardStub />
+    </AwardWrapper>
   </div>
 </template>
 
