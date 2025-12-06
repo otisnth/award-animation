@@ -1,79 +1,20 @@
 <template>
-  <div class="rainbow-container" ref="rainbowContainer" :style="{ '--parent-bg-color': parentBackgroundColor }">
-    <div class="rainbow" ref="rainbowEl">
-      <div class="stars-container" ref="starsContainer"></div>
-      <div class="rainbow-arc red">
-        <div class="rainbow-arc orange">
-          <div class="rainbow-arc yellow">
-            <div class="rainbow-arc green">
-              <div class="rainbow-arc blue">
-                <div class="rainbow-arc indigo">
-                  <div class="rainbow-arc purple"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <img class="cloud left" ref="leftCloud" src="@/assets/img/cloud.svg" />
-    <img class="cloud right" ref="rightCloud" src="@/assets/img/cloud.svg" />
-    <div class="content">
-      <slot />
-    </div>
+  <div class="rainbow-container">
+    <img class="rainbow-animation" src="@/assets/img/rainbow.svg" />
+    <div class="stars-container" ref="starsContainer"></div>
+    <slot />
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount, useTemplateRef } from "vue";
-
-const rainbowEl = ref(null);
-const leftCloud = ref(null);
-const rightCloud = ref(null);
+import { onMounted, onBeforeUnmount, useTemplateRef } from "vue";
 
 const starsContainer = useTemplateRef("starsContainer");
-const rainbowContainer = useTemplateRef("rainbowContainer");
-const parentBackgroundColor = ref("#ffffff"); // значение по умолчанию
 
-// Функция для поиска непрозрачного фона в родительских элементах
-function findParentBackgroundColor(element) {
-  if (!element) return "#ffffff";
-
-  let current = element.parentElement;
-
-  while (current) {
-    const bgColor = getComputedStyle(current).backgroundColor;
-
-    // Проверяем, является ли цвет непрозрачным
-    if (bgColor && bgColor !== "rgba(0, 0, 0, 0)" && bgColor !== "transparent") {
-      return bgColor;
-    }
-
-    // Останавливаемся на body или html
-    if (current.tagName === "BODY" || current.tagName === "HTML") {
-      break;
-    }
-
-    current = current.parentElement;
-  }
-
-  return "#ffffff"; // значение по умолчанию
-}
-
-const LEFT_DELAY = 1500; // левое облако появляется через 1.5s
-const RAINBOW_DELAY = 3000; // радуга появляется через 3s
-const HIDE_AFTER_RAINBOW = 4500; // через сколько после появления радуги начнётся её скрытие
-const HIDE_STEP = 700; // интервал между скрытиями элементов (радуга -> левое -> правое)
-const CYCLE = RAINBOW_DELAY + HIDE_AFTER_RAINBOW + HIDE_STEP * 2 + 4500; // общий интервал цикла
-
-let cycleTimer = null;
-let leftTimer = null;
-let rainbowTimer = null;
-let hideRainbowTimer = null;
-let hideLeftTimer = null;
-let hideRightTimer = null;
-let cleanupTimer = null;
+let startTimers;
+let endTimers;
+let intervalStars;
+let cycleTimer;
 
 const createAnimationElement = () => {
   const element = document.createElement("div");
@@ -92,79 +33,32 @@ const createAnimationElement = () => {
   }, 1500);
 };
 
-let intervalStars;
-
 function clearTimers() {
-  clearTimeout(leftTimer);
-  clearTimeout(rainbowTimer);
-  clearTimeout(hideRainbowTimer);
-  clearTimeout(hideLeftTimer);
-  clearTimeout(hideRightTimer);
-  clearTimeout(cleanupTimer);
+  clearTimeout(startTimers);
+  clearTimeout(endTimers);
   clearInterval(intervalStars);
-}
-
-function resetClasses() {
-  [rightCloud.value, leftCloud.value, rainbowEl.value].forEach((el) => {
-    if (!el) return;
-    el.classList.remove("show");
-    el.classList.remove("hide");
-  });
 }
 
 function playOnce() {
-  // Сброс перед стартом
-  resetClasses();
-
-  // Очищаем предыдущий интервал звезд, если он существует
   clearInterval(intervalStars);
 
-  // Небольшая задержка для гарантии перерисовки
   setTimeout(() => {
-    // Появление: правое -> левое -> радуга
-    if (rightCloud.value) rightCloud.value.classList.add("show");
-
-    leftTimer = setTimeout(() => {
-      if (leftCloud.value) leftCloud.value.classList.add("show");
+    startTimers = setTimeout(() => {
       intervalStars = setInterval(createAnimationElement, 100 + Math.random() * 50);
-    }, LEFT_DELAY);
+    }, 3000);
 
-    rainbowTimer = setTimeout(() => {
-      if (rainbowEl.value) rainbowEl.value.classList.add("show");
-    }, RAINBOW_DELAY);
-
-    // Скрытие в обратном порядке: радуга -> левое -> правое
-    hideRainbowTimer = setTimeout(() => {
-      if (rainbowEl.value) rainbowEl.value.classList.add("hide");
-    }, RAINBOW_DELAY + HIDE_AFTER_RAINBOW);
-
-    hideLeftTimer = setTimeout(() => {
-      if (rightCloud.value) rightCloud.value.classList.add("hide");
+    endTimers = setTimeout(() => {
       clearInterval(intervalStars);
-    }, RAINBOW_DELAY + HIDE_AFTER_RAINBOW + 4000);
-
-    hideRightTimer = setTimeout(() => {
-      if (leftCloud.value) leftCloud.value.classList.add("hide");
-    }, RAINBOW_DELAY + HIDE_AFTER_RAINBOW + HIDE_STEP + 4000);
-
-    // Убираем классы полностью чтобы можно было повторить цикл
-    cleanupTimer = setTimeout(() => {
-      resetClasses();
-    }, RAINBOW_DELAY + HIDE_AFTER_RAINBOW + HIDE_STEP + 4000 + 1600);
+    }, 10000);
   }, 20);
 }
 
 onMounted(() => {
-  // Получаем цвет фона первого непрозрачного родительского элемента
-  if (rainbowContainer.value) {
-    parentBackgroundColor.value = findParentBackgroundColor(rainbowContainer.value);
-  }
-
   playOnce();
   cycleTimer = setInterval(() => {
     clearTimers();
     playOnce();
-  }, CYCLE);
+  }, 17000);
 });
 
 onBeforeUnmount(() => {
@@ -199,158 +93,21 @@ const createStarContent = () => `
 </script>
 
 <style lang="css" scoped>
-.rainbow-container {
-  background-color: inherit;
-}
-
-.content {
-  position: relative;
-}
-
 .stars-container {
   position: absolute;
-  left: 20%;
-  height: 15%;
-  width: 60%;
+  left: -30%;
+  height: 60%;
+  width: 160%;
+  top: -30%;
 }
 
-.rainbow {
-  background-color: transparent;
+.rainbow-animation {
   position: absolute;
-  width: 340%;
-  height: 550%;
-  top: -55%;
-  left: -120%;
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-}
-
-.rainbow::after {
-  position: absolute;
-  left: 0;
-  content: "";
-  width: 100%;
-  height: 200px;
-  background: var(--parent-bg-color, #ffffff);
-}
-
-.rainbow.show::after {
-  animation: show-rainbow 6000ms ease forwards;
-  animation-fill-mode: both;
-}
-
-.rainbow.hide::after {
-  animation: hide-rainbow 4000ms ease forwards;
-  animation-fill-mode: both;
-}
-
-.rainbow-arc {
-  background-color: transparent;
-  display: flex;
-  flex: 1;
-  border-radius: 50%;
-  border: 10px solid transparent;
-}
-
-.red {
-  border-top-color: tomato;
-}
-
-.orange {
-  border-top-color: orange;
-}
-
-.yellow {
-  border-top-color: yellow;
-}
-
-.green {
-  border-top-color: lawngreen;
-}
-
-.blue {
-  border-top-color: deepskyblue;
-}
-
-.indigo {
-  border-top-color: mediumslateblue;
-}
-
-.purple {
-  border-top-color: mediumorchid;
-}
-
-/* Clouds */
-
-.cloud {
-  width: 150px;
-  height: 120px;
-  position: absolute;
-  left: 70%;
-  top: 60%;
-  margin-top: -120px;
-  opacity: 0; /* скрываем по умолчанию */
-}
-
-.cloud.left {
-  z-index: 3;
-  margin-left: -240px;
-}
-
-.cloud.right {
-  z-index: 3;
-  margin-left: 45px;
-}
-
-.cloud.show {
-  animation: show-cloud 600ms ease forwards;
-  animation-fill-mode: both;
-}
-
-/* скрытие облака */
-.cloud.hide {
-  animation: hide-cloud 700ms ease forwards;
-  animation-fill-mode: both;
-}
-
-@keyframes show-cloud {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes hide-cloud {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes show-rainbow {
-  0% {
-    left: 0;
-    width: 100%;
-  }
-  100% {
-    width: 0;
-  }
-}
-
-@keyframes hide-rainbow {
-  from {
-    left: 100%;
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
+  z-index: 1;
+  width: 300%;
+  height: 300%;
+  top: -75%;
+  left: -100%;
 }
 
 .award-star {
