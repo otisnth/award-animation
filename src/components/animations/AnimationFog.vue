@@ -77,20 +77,18 @@ function onLeave() {
 .fogs {
   --mx: 50%;
   --my: 50%;
-  --mask-size: 100%;
+  --mask-size: 250%;
 
   cursor: url("@/assets/img/flashlight.svg") 0 0, pointer;
-
 
   position: absolute;
 
   overflow: visible;
-  width: 500%;
+  width: 100%;
   height: 150%;
   top: -25%;
-  left: -200%;
+  left: -25%;
   /* z-index: 3; */
-
 
   -webkit-mask-image: var(--mask-image);
   mask-image: var(--mask-image);
@@ -110,9 +108,9 @@ function onLeave() {
   /* z-index: 3; */
   position: absolute;
   top: 0;
-  left: 25%;
+  left: 0;
 
-  width: 50%;
+  width: 100%;
   height: 100%;
 
   overflow: visible;
@@ -125,9 +123,9 @@ function onLeave() {
   /* z-index: 3; */
   position: absolute;
   top: 0;
-  left: 25%;
+  left: 0;
 
-  width: 50%;
+  width: 100%;
   height: 100%;
   opacity: 0;
 
@@ -140,7 +138,7 @@ function onLeave() {
 
 @keyframes fog {
   0% {
-    left: 20%;
+    left: -5%;
     opacity: 0;
   }
   20% {
@@ -151,7 +149,7 @@ function onLeave() {
   }
   100% {
     opacity: 0;
-    left: 30%;
+    left: 5%;
   }
 }
 </style>

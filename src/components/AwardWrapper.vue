@@ -42,5 +42,7 @@ const AnimationComponent = defineAsyncComponent(() => {
   position: relative;
   display: inline-block;
   overflow: visible;
+  width: 150px;
+  height: 150px;
 }
 </style>

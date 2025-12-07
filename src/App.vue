@@ -83,11 +83,11 @@ body,
 .container {
   height: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 150px);
-  justify-content: center;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
   align-items: center;
   gap: 100px;
 
-  padding-bottom: 150px;
+  padding: 100px;
 }
 </style>
