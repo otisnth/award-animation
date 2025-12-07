@@ -63,7 +63,7 @@
 </template>
 
 <script setup lang="ts">
-import AwardWrapper from "./components/AwardWrapper.vue";
+import AwardWrapper from "./components/awardAnimation/AwardWrapper.vue";
 import AwardStub from "./components/AwardStub.vue";
 // пришивание
 // разрезание ножницами?
