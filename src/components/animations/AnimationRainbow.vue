@@ -1,20 +1,230 @@
 <template>
   <div class="rainbow-container">
-    <img class="rainbow-animation" src="@/assets/img/rainbow.svg" />
+    <svg class="rainbow-animation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+      <defs>
+        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="3" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+
+        <filter id="cloudGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur1" />
+          <feColorMatrix
+            in="blur1"
+            type="matrix"
+            values="1.2 0   0   0   0&#xA;              0   1.2 0   0   0&#xA;              0   0   1.2 0   0&#xA;              0   0   0   1   0"
+            result="bright"
+          />
+          <feSpecularLighting
+            in="bright"
+            surfaceScale="2"
+            specularConstant="0.8"
+            specularExponent="20"
+            lighting-color="white"
+            result="spec"
+          >
+            <fePointLight x="-120" y="-80" z="200" />
+          </feSpecularLighting>
+          <feComposite in="spec" in2="SourceGraphic" operator="in" result="specOnCloud" />
+          <feMerge>
+            <feMergeNode in="bright" />
+            <feMergeNode in="specOnCloud" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+
+      <g id="Rainbow" filter="url(#glow)">
+        <path
+          class="rainbow-arc"
+          d="M 111.576 204.193 C 111.576 189.192 114.672 174.343 121.639 160.476 C 128.589 146.621 138.805 134.025 151.651 123.43 C 164.513 112.822 179.77 104.41 196.586 98.664 C 213.383 92.932 231.386 89.976 249.576 89.976 C 267.781 89.976 285.767 92.932 302.583 98.664 C 319.38 104.41 334.654 112.822 347.499 123.43 C 360.362 134.025 370.579 146.621 377.528 160.476 C 384.496 174.343 388.062 189.192 388.062 204.193"
+          fill="none"
+          stroke="#ff0000"
+          stroke-width="6.83"
+          stroke-linecap="round"
+        />
+        <path
+          class="rainbow-arc"
+          d="M 118.475 201.281 C 118.475 187.034 121.879 174.126 128.497 160.955 C 135.097 147.797 144.799 135.834 156.999 125.772 C 169.213 115.697 183.705 107.708 199.675 102.251 C 215.627 96.807 232.725 94 250.001 94 C 267.29 94 284.372 96.807 300.342 102.251 C 316.294 107.708 330.803 115.697 343.001 125.772 C 355.216 135.834 364.92 147.797 371.519 160.955 C 378.138 174.126 381.524 187.387 381.524 201.634"
+          fill="none"
+          stroke="#ff6f37"
+          stroke-width="6.83"
+          stroke-linecap="round"
+        />
+        <path
+          class="rainbow-arc"
+          d="M 125.477 198.531 C 125.477 185.042 128.699 173.861 134.965 161.391 C 141.213 148.934 150.399 137.607 161.95 128.081 C 173.515 118.542 187.235 110.978 202.354 105.811 C 217.457 100.658 233.646 98 250.002 98 C 266.369 98 282.543 100.658 297.665 105.811 C 312.767 110.978 326.502 118.542 338.052 128.081 C 349.617 137.607 358.803 148.934 365.052 161.391 C 371.319 173.861 374.523 185.404 374.523 198.893"
+          fill="none"
+          stroke="#faba2c"
+          stroke-width="6.83"
+          stroke-linecap="round"
+        />
+        <path
+          class="rainbow-arc"
+          d="M 132.523 195.78 C 132.523 183.054 135.561 173.568 141.474 161.805 C 147.368 150.051 156.035 139.366 166.931 130.379 C 177.842 121.38 190.787 114.244 205.048 109.37 C 219.298 104.507 234.571 102 250.002 102 C 265.443 102 280.701 104.507 294.967 109.37 C 309.216 114.244 322.172 121.38 333.07 130.379 C 343.98 139.366 352.645 150.051 358.542 161.805 C 364.453 173.568 367.477 183.407 367.477 196.133"
+          fill="none"
+          stroke="#7ac74d"
+          stroke-width="6.83"
+          stroke-linecap="round"
+        />
+        <path
+          class="rainbow-arc"
+          d="M 139.508 193.045 C 139.508 181.074 142.365 173.313 147.927 162.25 C 153.47 151.194 161.622 141.145 171.87 132.692 C 182.132 124.228 194.308 117.516 207.721 112.932 C 221.123 108.358 235.488 106 250.002 106 C 264.525 106 278.876 108.358 292.293 112.932 C 305.695 117.516 317.881 124.228 328.131 132.692 C 338.392 141.145 346.542 151.194 352.088 162.25 C 357.648 173.313 360.492 181.454 360.492 193.425"
+          fill="none"
+          stroke="#00b0ff"
+          stroke-width="6.83"
+          stroke-linecap="round"
+        />
+        <path
+          class="rainbow-arc"
+          d="M 146.506 190.285 C 146.506 179.072 149.182 173.05 154.392 162.687 C 159.583 152.331 167.22 142.919 176.819 135.001 C 186.431 127.073 197.836 120.786 210.398 116.493 C 222.951 112.208 236.408 110 250.002 110 C 263.606 110 277.048 112.208 289.614 116.493 C 302.168 120.786 313.582 127.073 323.183 135.001 C 332.795 142.919 340.427 152.331 345.623 162.687 C 350.83 173.05 353.494 179.436 353.494 190.649"
+          fill="none"
+          stroke="#0449ff"
+          stroke-width="6.83"
+          stroke-linecap="round"
+        />
+        <path
+          class="rainbow-arc"
+          d="M 152.763 187.544 C 153.984 177.088 155.991 172.792 160.848 163.129 C 165.689 153.473 172.811 144.696 181.761 137.313 C 190.724 129.92 201.358 124.058 213.073 120.055 C 224.778 116.059 237.326 114 250.002 114 C 262.687 114 275.222 116.059 286.938 120.055 C 298.646 124.058 309.289 129.92 318.241 137.313 C 327.203 144.696 334.32 153.473 339.165 163.129 C 344.021 172.792 346.505 177.444 346.505 187.9"
+          fill="none"
+          stroke="#6835bd"
+          stroke-width="6.83"
+          stroke-linecap="round"
+        />
+
+        <set attributeName="class" to="show" begin="showCloudR.end" @beginEvent="setStarsInterval" />
+        <set attributeName="class" to="hide" begin="showCloudR.end + 5s" @beginEvent="clearStarsInterval" />
+      </g>
+
+      <g
+        id="CloudL"
+        transform="matrix(1.063132, 0, 0, 1.063132, -97.813324, -134.230225)"
+        filter="url(#cloudGlow)"
+        opacity="0"
+      >
+        <g transform="matrix(1, 0, 0, 1, 182.266113, 282.867188)">
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            fill="#fff"
+            d="M48,54H12C6.478,54,2,49.523,2,44s4.478-10,10-10 c0.553,0,1-0.447,1-1c0-0.551-0.444-0.996-0.995-0.998h0.015C12.013,32.002,12.007,32,12,32c-0.771,0-1.521,0.08-2.251,0.219 C8.673,31.135,8,29.648,8,28c0-3.314,2.687-6,6-6c1.657,0,3.157,0.672,4.243,1.758c0,0,1.007,0.992,1.757,0.244 c0.75-0.75-0.343-1.658-0.343-1.658c-0.626-0.625-1.359-1.141-2.163-1.531c0.002,0,0.004,0,0.006,0.002 C20.275,14.451,26.614,10,34,10c8.72,0,15.988,6.199,17.644,14.432c0.004,0.002,0.007,0.002,0.011,0.004 C50.479,24.16,49.26,24,48,24c-0.553,0-1,0.447-1,1s0.447,1,1,1c7.732,0,14,6.268,14,14C62,47.73,55.732,54,48,54z"
+          />
+          <g>
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              fill="#e9e9e9"
+              d="M53.765,25.088C52.351,15.426,44.054,8,34,8 c-8.263,0-15.353,5.012-18.402,12.16C15.081,20.055,14.548,20,14,20c-4.418,0-8,3.582-8,8c0,1.818,0.614,3.488,1.636,4.832 C3.169,34.578,0,38.914,0,44c0,6.627,5.373,12,12,12h36c8.837,0,16-7.162,16-16C64,33.197,59.749,27.402,53.765,25.088z M48,54H12 C6.478,54,2,49.523,2,44s4.478-10,10-10c0.553,0,1-0.447,1-1c0-0.551-0.444-0.996-0.995-0.998h0.015 C12.013,32.002,12.007,32,12,32c-0.771,0-1.521,0.08-2.251,0.219C8.673,31.135,8,29.648,8,28c0-3.314,2.687-6,6-6 c1.657,0,3.157,0.672,4.243,1.758c0,0,1.007,0.992,1.757,0.244c0.75-0.75-0.343-1.658-0.343-1.658 c-0.626-0.625-1.359-1.141-2.163-1.531c0.002,0,0.004,0,0.006,0.002C20.275,14.451,26.614,10,34,10 c8.72,0,15.988,6.199,17.644,14.432c0.004,0.002,0.007,0.002,0.011,0.004C50.479,24.16,49.26,24,48,24c-0.553,0-1,0.447-1,1 s0.447,1,1,1c7.732,0,14,6.268,14,14C62,47.73,55.732,54,48,54z"
+            />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              fill="#e9e9e9"
+              d="M48,30c-0.553,0-1,0.447-1,1s0.447,1,1,1c4.418,0,8,3.582,8,8 c0,0.553,0.447,1,1,1s1-0.447,1-1C58,34.477,53.522,30,48,30z"
+            />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              fill="#e9e9e9"
+              d="M18.828,35.281c-0.75,0.734,0.243,1.646,0.243,1.646 C20.881,38.738,22,41.238,22,44c0,0.553,0.447,1,1,1s1-0.447,1-1c0-3.314-1.344-6.314-3.515-8.486 C20.485,35.514,19.578,34.547,18.828,35.281z"
+            />
+          </g>
+        </g>
+
+        <animate
+          id="showCloudL"
+          attributeName="opacity"
+          from="0"
+          to="1"
+          begin="hideCloudL.end +1s; 0s"
+          dur="1.5s"
+          fill="freeze"
+          restart="whenNotActive"
+        />
+        <animate
+          id="hideCloudL"
+          attributeName="opacity"
+          from="1"
+          to="0"
+          begin="hideCloudR.end"
+          dur="1.5s"
+          fill="freeze"
+          restart="whenNotActive"
+        />
+      </g>
+
+      <g
+        id="CloudR"
+        transform="matrix(1.062543, 0, 0, 1.062543, 141.334305, -134.045029)"
+        filter="url(#cloudGlow)"
+        opacity="0"
+      >
+        <g transform="matrix(1, 0, 0, 1, 182.266113, 282.867188)">
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            fill="#fff"
+            d="M48,54H12C6.478,54,2,49.523,2,44s4.478-10,10-10 c0.553,0,1-0.447,1-1c0-0.551-0.444-0.996-0.995-0.998h0.015C12.013,32.002,12.007,32,12,32c-0.771,0-1.521,0.08-2.251,0.219 C8.673,31.135,8,29.648,8,28c0-3.314,2.687-6,6-6c1.657,0,3.157,0.672,4.243,1.758c0,0,1.007,0.992,1.757,0.244 c0.75-0.75-0.343-1.658-0.343-1.658c-0.626-0.625-1.359-1.141-2.163-1.531c0.002,0,0.004,0,0.006,0.002 C20.275,14.451,26.614,10,34,10c8.72,0,15.988,6.199,17.644,14.432c0.004,0.002,0.007,0.002,0.011,0.004 C50.479,24.16,49.26,24,48,24c-0.553,0-1,0.447-1,1s0.447,1,1,1c7.732,0,14,6.268,14,14C62,47.73,55.732,54,48,54z"
+          />
+          <g>
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              fill="#e9e9e9"
+              d="M53.765,25.088C52.351,15.426,44.054,8,34,8 c-8.263,0-15.353,5.012-18.402,12.16C15.081,20.055,14.548,20,14,20c-4.418,0-8,3.582-8,8c0,1.818,0.614,3.488,1.636,4.832 C3.169,34.578,0,38.914,0,44c0,6.627,5.373,12,12,12h36c8.837,0,16-7.162,16-16C64,33.197,59.749,27.402,53.765,25.088z M48,54H12 C6.478,54,2,49.523,2,44s4.478-10,10-10c0.553,0,1-0.447,1-1c0-0.551-0.444-0.996-0.995-0.998h0.015 C12.013,32.002,12.007,32,12,32c-0.771,0-1.521,0.08-2.251,0.219C8.673,31.135,8,29.648,8,28c0-3.314,2.687-6,6-6 c1.657,0,3.157,0.672,4.243,1.758c0,0,1.007,0.992,1.757,0.244c0.75-0.75-0.343-1.658-0.343-1.658 c-0.626-0.625-1.359-1.141-2.163-1.531c0.002,0,0.004,0,0.006,0.002C20.275,14.451,26.614,10,34,10 c8.72,0,15.988,6.199,17.644,14.432c0.004,0.002,0.007,0.002,0.011,0.004C50.479,24.16,49.26,24,48,24c-0.553,0-1,0.447-1,1 s0.447,1,1,1c7.732,0,14,6.268,14,14C62,47.73,55.732,54,48,54z"
+            />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              fill="#e9e9e9"
+              d="M48,30c-0.553,0-1,0.447-1,1s0.447,1,1,1c4.418,0,8,3.582,8,8 c0,0.553,0.447,1,1,1s1-0.447,1-1C58,34.477,53.522,30,48,30z"
+            />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              fill="#e9e9e9"
+              d="M18.828,35.281c-0.75,0.734,0.243,1.646,0.243,1.646 C20.881,38.738,22,41.238,22,44c0,0.553,0.447,1,1,1s1-0.447,1-1c0-3.314-1.344-6.314-3.515-8.486 C20.485,35.514,19.578,34.547,18.828,35.281z"
+            />
+          </g>
+        </g>
+
+        <animate
+          id="showCloudR"
+          attributeName="opacity"
+          from="0"
+          to="1"
+          begin="showCloudL.end"
+          dur="1.5s"
+          fill="freeze"
+          restart="whenNotActive"
+        />
+        <animate
+          id="hideCloudR"
+          attributeName="opacity"
+          from="1"
+          to="0"
+          begin="showCloudR.end + 10s"
+          dur="1.5s"
+          fill="freeze"
+          restart="whenNotActive"
+        />
+      </g>
+    </svg>
+
     <div class="stars-container" ref="starsContainer"></div>
     <slot />
   </div>
 </template>
 
 <script setup>
-import { onMounted, onBeforeUnmount, useTemplateRef } from "vue";
+import { onBeforeUnmount, useTemplateRef } from "vue";
 
 const starsContainer = useTemplateRef("starsContainer");
 
-let startTimers;
-let endTimers;
 let intervalStars;
-let cycleTimer;
 
 const createAnimationElement = () => {
   const element = document.createElement("div");
@@ -30,41 +240,14 @@ const createAnimationElement = () => {
 
   setTimeout(() => {
     element.remove();
-  }, 1500);
+  }, 6000);
 };
 
-function clearTimers() {
-  clearTimeout(startTimers);
-  clearTimeout(endTimers);
-  clearInterval(intervalStars);
-}
-
-function playOnce() {
-  clearInterval(intervalStars);
-
-  setTimeout(() => {
-    startTimers = setTimeout(() => {
-      intervalStars = setInterval(createAnimationElement, 100 + Math.random() * 50);
-    }, 3000);
-
-    endTimers = setTimeout(() => {
-      clearInterval(intervalStars);
-    }, 10000);
-  }, 20);
-}
-
-onMounted(() => {
-  playOnce();
-  cycleTimer = setInterval(() => {
-    clearTimers();
-    playOnce();
-  }, 17000);
-});
+const setStarsInterval = () => (intervalStars = setInterval(createAnimationElement, 100 + Math.random() * 50));
+const clearStarsInterval = () => clearInterval(intervalStars);
 
 onBeforeUnmount(() => {
-  clearInterval(cycleTimer);
-  clearInterval(intervalStars);
-  clearTimers();
+  clearStarsInterval();
 });
 
 const size = Math.random() * 30 + 30;
@@ -108,6 +291,39 @@ const createStarContent = () => `
   height: 300%;
   top: -75%;
   left: -100%;
+}
+
+.rainbow-arc {
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+}
+
+.show .rainbow-arc {
+  animation: rainbow-show 6s ease forwards;
+}
+
+.hide .rainbow-arc {
+  animation: rainbow-hide 6s ease forwards;
+}
+
+@keyframes rainbow-show {
+  from {
+    stroke-dashoffset: 1200;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes rainbow-hide {
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: 1200;
+  }
 }
 
 .award-star {

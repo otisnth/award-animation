@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" xmlns:bx="https://boxy-svg.com">
-
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
   <defs>
     <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur stdDeviation="3" result="blur" />
@@ -29,37 +27,37 @@
 
     <style>
       .rainbow-arc {
-        stroke-dasharray: 1200;
-        stroke-dashoffset: 1200;
+      stroke-dasharray: 1200;
+      stroke-dashoffset: 1200;
       }
 
       .show .rainbow-arc {
-        animation: rainbow-show 6s ease forwards;
+      animation: rainbow-show 6s ease forwards;
 
       }
 
       .hide .rainbow-arc {
-        animation: rainbow-hide 6s ease forwards;
+      animation: rainbow-hide 6s ease forwards;
       }
 
       @keyframes rainbow-show {
-        from {
-          stroke-dashoffset: 1200;
-        }
+      from {
+      stroke-dashoffset: 1200;
+      }
 
-        to {
-          stroke-dashoffset: 0;
-        }
+      to {
+      stroke-dashoffset: 0;
+      }
       }
 
       @keyframes rainbow-hide {
-        from {
-          stroke-dashoffset: 0;
-        }
+      from {
+      stroke-dashoffset: 0;
+      }
 
-        to {
-          stroke-dashoffset: 1200;
-        }
+      to {
+      stroke-dashoffset: 1200;
+      }
       }
     </style>
   </defs>
@@ -91,7 +89,8 @@
     <set attributeName="class" to="hide" begin="showCloudR.end + 5s" />
   </g>
 
-  <g id="CloudL" transform="matrix(1.063132, 0, 0, 1.063132, -97.813324, -134.230225)" filter="url(#cloudGlow)"
+  <g id="CloudL" transform="matrix(1.063132, 0, 0, 1.063132, -97.813324, -134.230225)"
+    filter="url(#cloudGlow)"
     opacity="0">
     <g transform="matrix(1, 0, 0, 1, 182.266113, 282.867188)">
       <path fill-rule="evenodd" clip-rule="evenodd" fill="#fff"
@@ -106,13 +105,16 @@
       </g>
     </g>
 
-    <animate id="showCloudL" attributeName="opacity" from="0" to="1" begin="hideCloudL.end +1s; 0s" dur="1.5s"
+    <animate id="showCloudL" attributeName="opacity" from="0" to="1" begin="hideCloudL.end +1s; 0s"
+      dur="1.5s"
       fill="freeze" restart="whenNotActive" />
-    <animate id="hideCloudL" attributeName="opacity" from="1" to="0" begin="hideCloudR.end" dur="1.5s" fill="freeze"
+    <animate id="hideCloudL" attributeName="opacity" from="1" to="0" begin="hideCloudR.end"
+      dur="1.5s" fill="freeze"
       restart="whenNotActive" />
   </g>
 
-  <g id="CloudR" transform="matrix(1.062543, 0, 0, 1.062543, 141.334305, -134.045029)" filter="url(#cloudGlow)"
+  <g id="CloudR" transform="matrix(1.062543, 0, 0, 1.062543, 141.334305, -134.045029)"
+    filter="url(#cloudGlow)"
     opacity="0">
     <g transform="matrix(1, 0, 0, 1, 182.266113, 282.867188)">
       <path fill-rule="evenodd" clip-rule="evenodd" fill="#fff"
@@ -127,9 +129,11 @@
       </g>
     </g>
 
-    <animate id="showCloudR" attributeName="opacity" from="0" to="1" begin="showCloudL.end" dur="1.5s" fill="freeze"
+    <animate id="showCloudR" attributeName="opacity" from="0" to="1" begin="showCloudL.end"
+      dur="1.5s" fill="freeze"
       restart="whenNotActive" />
-    <animate id="hideCloudR" attributeName="opacity" from="1" to="0" begin="showCloudR.end + 10s" dur="1.5s"
+    <animate id="hideCloudR" attributeName="opacity" from="1" to="0" begin="showCloudR.end + 10s"
+      dur="1.5s"
       fill="freeze" restart="whenNotActive" />
   </g>
 </svg>
