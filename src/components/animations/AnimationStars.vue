@@ -35,8 +35,8 @@ const createStarContent = () => `
 `;
 </script>
 
-<style>
-.award-star {
+<style scoped>
+:deep(.award-star) {
   position: absolute;
   pointer-events: none;
   opacity: 0;

@@ -27,6 +27,7 @@
 @keyframes divine-burst {
   0% {
     transform: scale(0.2);
+    rotate: 0deg;
     opacity: 0;
   }
   10% {
@@ -46,6 +47,7 @@
     opacity: 0.5;
   }
   100% {
+    rotate: 90deg;
     transform: scale(1.5);
     opacity: 0;
   }

@@ -2,7 +2,7 @@
   <AnimationBase
     animationClass="firework"
     :createContent="createFireworkContent"
-    :intervalRange="[800, 1200]"
+    :intervalRange="[600, 800]"
     :duration="2000"
   >
     <slot />
@@ -129,8 +129,8 @@ const createFireworkContent = () => `
 `;
 </script>
 
-<style>
-.firework {
+<style scoped>
+:deep(.firework) {
   position: absolute;
   pointer-events: none;
   animation: firework-explode 2s ease-out forwards;

@@ -7,23 +7,26 @@
 <script setup lang="ts">
 import { defineAsyncComponent } from "vue";
 
+enum Animations {
+  "stars" = "Звезды",
+  "sparks" = "Искры",
+  "confetti" = "Конфетти",
+  "bubbles" = "Пузыри",
+  "hearts" = "Сердца",
+  "fireworks" = "Фейерверки",
+  "flames" = "Огонь",
+  "rainbow" = "Радуга",
+  "holographic" = "Голографическая",
+  "fog" = "Туман",
+  "frozen" = "Заморозка",
+  "ufo" = "Нло",
+  "divine" = "Лучи",
+  "shimmer" = "Блеск",
+  "pulse" = "Пульс",
+}
+
 interface Props {
-  animation:
-    | "stars"
-    | "sparks"
-    | "confetti"
-    | "bubbles"
-    | "hearts"
-    | "fireworks"
-    | "flames"
-    | "rainbow"
-    | "holographic"
-    | "fog"
-    | "frozen"
-    | "ufo"
-    | "divine"
-    | "shimmer"
-    | "pulse";
+  animation: keyof typeof Animations;
 }
 
 const { animation } = defineProps<Props>();

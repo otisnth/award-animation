@@ -30,8 +30,8 @@ const createSparkContent = () => {
 };
 </script>
 
-<style>
-.award-spark {
+<style scoped>
+:deep(.award-spark) {
   position: absolute;
   pointer-events: none;
   animation: sparkFly 1.8s ease-out forwards;

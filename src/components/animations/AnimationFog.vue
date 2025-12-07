@@ -8,15 +8,15 @@
     @mouseleave="onLeave"
   >
     <div class="fogs" ref="fogs">
-      <img class="fog-1" src="@/assets/img/fog/fog6.png" alt="" />
-      <img class="fog-2" src="@/assets/img/fog/fog6.png" alt="" />
+      <img class="fog-1" src="@/assets/animations/fog/fog.png" />
+      <img class="fog-2" src="@/assets/animations/fog/fog.png" />
     </div>
     <slot />
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, useTemplateRef } from "vue";
+import { ref, useTemplateRef } from "vue";
 
 const el = ref<HTMLElement | null>(null);
 
@@ -77,7 +77,7 @@ function onLeave() {
   --my: 50%;
   --mask-size: 250%;
 
-  cursor: url("@/assets/img/flashlight.svg") 0 0, pointer;
+  cursor: url("@/assets/animations/fog/flashlight.svg") 0 0, pointer;
 
   position: absolute;
 
@@ -86,7 +86,6 @@ function onLeave() {
   height: 150%;
   top: -25%;
   left: -50%;
-  /* z-index: 3; */
 
   -webkit-mask-image: var(--mask-image);
   mask-image: var(--mask-image);
@@ -103,7 +102,6 @@ function onLeave() {
 
 .fog-1 {
   display: block;
-  /* z-index: 3; */
   position: absolute;
   top: 0;
   left: 0;
@@ -118,7 +116,6 @@ function onLeave() {
 
 .fog-2 {
   display: block;
-  /* z-index: 3; */
   position: absolute;
   top: 0;
   left: 0;

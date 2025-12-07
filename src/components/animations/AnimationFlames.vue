@@ -1,10 +1,10 @@
 <template>
   <div class="fire-container">
-    <img src="@/assets/img/fire.gif" class="fire" />
+    <img src="@/assets/animations/flames/fire.gif" class="fire" />
 
     <div v-for="i in COUNT_COAL" class="ember" aria-hidden="true" :style="getCoalStyles(i)">
       <span class="ember-core"></span>
-      <img class="ember-crust" src="@/assets/img/coal.svg" />
+      <img class="ember-crust" src="@/assets/animations/flames/coal.svg" />
       <div class="sparks" aria-hidden="true">
         <span></span>
         <span></span>
@@ -29,7 +29,7 @@
 <script setup lang="ts">
 const COUNT_COAL = 5;
 
-const getCoalStyles = (i) => {
+const getCoalStyles = (i: number) => {
   const size = Math.random() * 20 + 10;
 
   return {
@@ -62,20 +62,8 @@ const getCoalStyles = (i) => {
 .ember {
   position: absolute;
   transform: translateX(-50%);
-  /* width: 40px;
-  height: 30px; */
   pointer-events: none;
-  z-index: 5; /* поверх фонового содержимого */
-  bottom: 10%;
-}
-
-.ember-1 {
-  left: 30%;
-  bottom: 10%;
-}
-
-.ember-2 {
-  left: 70%;
+  z-index: 5;
   bottom: 10%;
 }
 
@@ -83,7 +71,6 @@ const getCoalStyles = (i) => {
   display: block;
   width: 70%;
   height: 100%;
-  /* более сложная текстура: горячее ядро + тёмная обугленная корка (наслоение через отдельный элемент) */
   border-radius: 50% 50% 40% 40% / 60% 60% 40% 40%;
   background: radial-gradient(
     circle at 40% 30%,
@@ -275,19 +262,6 @@ const getCoalStyles = (i) => {
   100% {
     transform: translateX(-50%) translateY(-14px) scale(1.6) rotate(2deg);
     opacity: 0;
-  }
-}
-
-/* Slightly larger ember in compact screens but keep proportions */
-@media (max-width: 420px) {
-  .ember {
-    width: 12px;
-    height: 9px;
-    bottom: 4px;
-  }
-  .sparks {
-    width: 18px;
-    height: 14px;
   }
 }
 </style>

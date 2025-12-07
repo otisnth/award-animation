@@ -13,7 +13,7 @@
 import AnimationBase from "./AnimationBase.vue";
 
 const createBubbleContent = () => {
-  const size = Math.random() * 20 + 10; // Размер пузыря от 10 до 30px
+  const size = Math.random() * 20 + 10;
   return `
     <svg
     style="
@@ -22,7 +22,6 @@ const createBubbleContent = () => {
     "
     viewBox="0 0 200 200">
     <defs>
-        <!-- Разноцветный градиент -->
         <linearGradient id="gradient--colors"
             x1="0" y1="100%"
             x2="100%" y2="0">
@@ -34,7 +33,6 @@ const createBubbleContent = () => {
                 stop-color="yellow"/>
         </linearGradient>
 
-        <!-- Градиент прозрачности разноцветного слоя -->
         <radialGradient id="gradient--colors-transparency"
             fx="25%" fy="25%">
             <stop offset="0%"
@@ -49,13 +47,11 @@ const createBubbleContent = () => {
                   stop-color="black"/>
         </radialGradient>
 
-        <!-- Маска прозрачности разноцветного слоя -->
         <mask id="mask--colors-transparency">
             <rect fill="url(#gradient--colors-transparency)"
               width="100%" height="100%"></rect>
         </mask>
 
-        <!-- Градиент для прозрачности -->
         <radialGradient id="gradient--bw-light" fy="10%">
             <stop offset="60%"
                   stop-color="black"
@@ -67,20 +63,17 @@ const createBubbleContent = () => {
                   stop-color="black"/>
         </radialGradient>
 
-        <!-- Маска для нижнего отражения -->
         <mask id="mask--light-bottom">
             <rect fill="url(#gradient--bw-light)"
                 width="100%" height="100%"></rect>
         </mask>
 
-        <!-- Маска для верхнего отражения -->
         <mask id="mask--light-top">
             <rect fill="url(#gradient--bw-light)"
                 width="100%" height="100%"
                 transform="rotate(180, 100, 100)"></rect>
         </mask>
 
-                <!-- Градиент блика -->
         <radialGradient id="gradient--spot" fy="20%">
             <stop offset="10%"
                   stop-color="white"
@@ -91,32 +84,26 @@ const createBubbleContent = () => {
         </radialGradient>
     </defs>        
 
-    <!-- Нижний блик -->
     <ellipse rx="40" ry="20" cx="150" cy="150"
        fill="url(#gradient--spot)"
        transform="rotate(-225, 150, 150)">
     </ellipse>    
 
-    <!-- Нижнее отражение -->
     <circle r="50%" cx="50%" cy="50%"
         fill="aqua"
         mask="url(#mask--light-bottom)">
     </circle>
 
-    <!-- Верхнее отражение -->
     <circle r="50%" cx="50%" cy="50%"
         fill="yellow"
         mask="url(#mask--light-top)">
     </circle>
 
-
-    <!-- Верхний блик -->
     <ellipse rx="55" ry="25" cx="55" cy="55"
        fill="url(#gradient--spot)"
        transform="rotate(-45, 55, 55)">
     </ellipse>
 
-    <!-- Фигура с маской и разноцветным градиентом -->
     <circle r="50%" cx="50%" cy="50%"
         fill="url(#gradient--colors)"
         mask="url(#mask--colors-transparency)">
@@ -127,8 +114,8 @@ const createBubbleContent = () => {
 };
 </script>
 
-<style>
-.bubble {
+<style scoped>
+:deep(.bubble) {
   position: absolute;
   pointer-events: none;
   animation: bubble-rise 4s ease-out forwards;
@@ -136,11 +123,11 @@ const createBubbleContent = () => {
 
 @keyframes bubble-rise {
   0% {
-    transform: translateY(0) scale(1);
+    transform: translateY(150) scale(1);
     opacity: 1;
   }
   100% {
-    transform: translateY(-200px) scale(0.8);
+    transform: translateY(-100px) scale(0.8);
     opacity: 0;
   }
 }

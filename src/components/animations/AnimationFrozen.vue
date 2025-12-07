@@ -81,7 +81,7 @@ onMounted(() => {
 .ice-frost {
   position: absolute;
   inset: -10%;
-  background: url("@/assets/img/ice.svg") center / cover no-repeat;
+  background: url("@/assets/animations/frozen/ice.svg") center / cover no-repeat;
 
   /* radial-gradient(circle at 40% 30%, rgba(255, 255, 255, 0.9), rgba(120, 217, 255, 0.7) 45%, rgba(14, 72, 99, 0.8)),
     linear-gradient(145deg, rgba(197, 233, 255, 0.8), rgba(86, 162, 201, 0.7)) */

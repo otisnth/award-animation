@@ -326,7 +326,7 @@ const createStarContent = () => `
   }
 }
 
-.award-star {
+:deep(.award-star) {
   position: absolute;
   pointer-events: none;
   opacity: 0;

@@ -2,8 +2,8 @@
   <AnimationBase
     animationClass="confetti"
     :createContent="createConfettiContent"
-    :intervalRange="[200, 400]"
-    :duration="1000"
+    :intervalRange="[100, 200]"
+    :duration="2000"
   >
     <slot />
   </AnimationBase>
@@ -26,8 +26,8 @@ const createConfettiContent = () => {
 };
 </script>
 
-<style>
-.confetti {
+<style scoped>
+:deep(.confetti) {
   position: absolute;
   pointer-events: none;
   animation: confetti-fall 3s ease-out forwards;
@@ -35,7 +35,7 @@ const createConfettiContent = () => {
 
 @keyframes confetti-fall {
   0% {
-    transform: translateY(-10px) rotate(0deg);
+    transform: translateY(-50px) rotate(0deg);
     opacity: 1;
   }
   100% {

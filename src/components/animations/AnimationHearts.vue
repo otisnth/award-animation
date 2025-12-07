@@ -2,7 +2,7 @@
   <AnimationBase
     animationClass="heart"
     :createContent="createHeartContent"
-    :intervalRange="[500, 700]"
+    :intervalRange="[300, 500]"
     :duration="2500"
   >
     <slot />
@@ -23,8 +23,8 @@ const createHeartContent = () => `
 `;
 </script>
 
-<style>
-.heart {
+<style scoped>
+:deep(.heart) {
   position: absolute;
   pointer-events: none;
   animation: heart-float 2.5s ease-out forwards;

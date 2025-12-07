@@ -1,10 +1,10 @@
 <template>
   <div ref="el" class="ufo-container">
-    <img class="ufo" src="@/assets/img/ufo.svg" ref="ufo" />
+    <img class="ufo" src="@/assets/animations/ufo/ufo.svg" ref="ufo" />
 
-    <img class="ufo-ray" src="@/assets/img/ufoRay.svg" ref="ray" />
+    <img class="ufo-ray" src="@/assets/animations/ufo/ufoRay.svg" ref="ray" />
 
-    <img class="ufo-grass" src="@/assets/img/ufoGrass.svg" />
+    <img class="ufo-grass" src="@/assets/animations/ufo/ufoGrass.svg" />
 
     <div class="ufo-content" ref="award">
       <slot />

@@ -1,8 +1,5 @@
 <template>
-  <div
-    ref="el"
-    class="transform-container"
-  >
+  <div ref="el" class="transform-container">
     <div class="transform-content" ref="content">
       <slot />
     </div>
@@ -27,7 +24,7 @@ function onMove(e: MouseEvent | { clientX: number; clientY: number }) {
   const l = clientX;
   const t = clientY;
   const h = window.innerHeight;
-  const w = window.innerWidth;  
+  const w = window.innerWidth;
 
   if (w === 0 || h === 0) return;
 
@@ -36,9 +33,9 @@ function onMove(e: MouseEvent | { clientX: number; clientY: number }) {
 
   const px = Math.abs(Math.floor(lPercent) - 100);
   const py = Math.abs(Math.floor(tPercent) - 100);
-  
+
   const pa = 50 - px + (50 - py);
-  
+
   const lp = 50 + (px - 50) / 1.5;
   const tp = 50 + (py - 50) / 1.5;
   const px_spark = 50 + (px - 50) / 7;
@@ -108,18 +105,16 @@ onMounted(() => {
 onBeforeUnmount(() => {
   document.body.removeEventListener("mousemove", onMove);
   document.body.removeEventListener("touchmove", onTouchMove);
-  
+
   if (styleEl && styleEl.parentNode) styleEl.parentNode.removeChild(styleEl);
 });
 </script>
 
-<style>
-* {
+<style scoped>
+.transform-container {
   --color1: #efb2fb;
   --color2: #acc6f8;
-}
 
-.transform-container {
   position: relative;
   z-index: 10;
   touch-action: none;
@@ -157,7 +152,6 @@ onBeforeUnmount(() => {
   background-position: 50% 50%;
   transform-origin: center;
 }
-
 
 .transform-gloss:before,
 .transform-gloss:after {
@@ -206,7 +200,8 @@ onBeforeUnmount(() => {
 
 .transform-gloss:after {
   opacity: 1;
-  background-image: url("@/assets/img/holographic/sparkles.webp"), url("@/assets/img/holographic/holo.webp"),
+  background-image: url("@/assets/animations/holographic/sparkles.webp"),
+    url("@/assets/animations/holographic/holo.webp"),
     linear-gradient(125deg, #ff008450 15%, #fca40040 30%, #ffff0030 40%, #00ff8a20 60%, #00cfff40 70%, #cc4cfa50 85%);
   background-position: 50% 50%;
   background-size: 160%;
