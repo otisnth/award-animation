@@ -69,8 +69,6 @@ function onLeave() {
 <style scoped>
 .fog-container {
   position: relative;
-  width: 100%;
-  height: 100%;
   overflow: visible;
 }
 
@@ -84,10 +82,10 @@ function onLeave() {
   position: absolute;
 
   overflow: visible;
-  width: 100%;
+  width: 200%;
   height: 150%;
   top: -25%;
-  left: -25%;
+  left: -50%;
   /* z-index: 3; */
 
   -webkit-mask-image: var(--mask-image);
